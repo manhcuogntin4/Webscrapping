@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/cnd/PycharmProjects/webscraper/venv"
+VIRTUAL_ENV="/home/cuong-nguyen/2019/Agility/Webscrapping/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
