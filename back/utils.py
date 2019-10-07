@@ -217,14 +217,16 @@ def getcotation(urlcours):
     content = getcontent(urlcours)
     tables = cleantables(content.find_all("table"))
     tablecontents=[]
-    for i,tab in enumerate(tables):
+    for tab in tables:
         trlist=[]
         trs=gettr(tab)
         for tr in trs:
             p=cleandict(trtodict(tr,tab))
             if p!={}:
              trlist.append(p)
-        tablecontents[i]=trlist
+
+        tablecontents.append(trlist)
+    print (tablecontents[0])
     return tablecontents
 def geteuropiece(uri):
     content = getcontent(uri)
@@ -243,27 +245,30 @@ def geteuropiece(uri):
           cotation.append(p)
 
     return [cotation]
+def getcategory(name):
+    category ="Lingotin" if "Lingotin" in name else ("Lingot" if "Lingot" in name else "piece")
+    return category
 
 class Website:
-    def __init__(self,uri,naming,category="", poids="",image="" ,getcot=None):
+    def __init__(self,uri,naming, poids="",image="" ,getcot=None):
         self.uri=uri
         self.naming=naming
         self.poids=poids
         self.image=image
-        self.category=category
         self.getcot = getcot
         self.content=self.getlisting()
     def getlisting(self):
         p=eval("self.getcot(self.uri)")
         print(p[0])
         return(p[0])
+
     @property
     def staticdata(self):
         data=[]
         for cont in self.content:
              p={}
              p["name"]=cont[self.naming]
-             p["catagory"]=cont[self.category]
+             p["category"]=getcategory(p["name"])
              p["poids"]=cont[self.poids]
              p["image"]=cont[self.image]
              data.append(p)
@@ -275,8 +280,10 @@ cdturi="https://www.cdt.fr/or/bourse-cours/cours.html"
 bullionvaulturi="https://www.bullionvault.com/gold-price-chart.do"
 goldmarketuri="https://www.goldmarket.fr/s/"
 europieceuri="https://www.europiecedor.fr/cours-piece-achat-or/"
-
+getcotation(cdturi)
 #getcotation(bullionvault)
-europiece=Website(europieceuri,"name","" ,"","image",geteuropiece)
-
+#europiece=Website(europieceuri,"name","category" ,"poids","image",geteuropiece)
+#print(europiece.staticdata)
+cdt=Website(cdturi,"Pièces ou Lingots d'Or","Poids net","0",getcotation)
+print(cdt.staticdata)
 searchterm("achat or paris")
