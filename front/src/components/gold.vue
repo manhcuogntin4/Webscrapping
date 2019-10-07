@@ -11,6 +11,12 @@
                             <v-list-item-subtitle>{{ gold.prix }}</v-list-item-subtitle>
                         </v-list-item-content>
                     </v-list-item>
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn text icon color="red" @click="deleteGold">
+                            <v-icon>mdi-delete</v-icon>
+                        </v-btn>
+                    </v-card-actions>
                 </v-card>
             </v-flex>
         </v-layout>
@@ -26,11 +32,14 @@
             gold: null
         }),
         created() {
-            console.log('created called.');
             axios.get('http://localhost:8000/api/v1/gold/' + this.name).then((response) => {
                 this.gold = response.data;
-                alert("Hello World")
             });
+        },
+        methods: {
+            deleteGold() {
+                axios.delete('http://localhost:8000/api/v1/gold/' + this.name);
+            }
         }
     };
 </script>
