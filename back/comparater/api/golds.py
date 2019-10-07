@@ -1,6 +1,7 @@
 from flask import request
 from flask_restful import Resource
-from comparater.managers.golds import search_golds,search_gold
+from json import JSONEncoder
+from comparater.managers.golds import search_golds,search_gold,delete_gold
 class Golds(Resource):
     def get(self):
         query = request.args['query']
@@ -11,3 +12,7 @@ class Golds(Resource):
 class Gold(Resource):
     def get(self,gold_name):
         return search_gold(gold_name)
+
+    def delete(self, gold_name):
+        result = delete_gold(gold_name)
+        return result
