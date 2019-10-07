@@ -1,7 +1,7 @@
 from flask import Blueprint
 from flask_restful import Api
 
-from comparater.models.database import db
+from models.database import db
 
 from .golds import Golds,Gold
 

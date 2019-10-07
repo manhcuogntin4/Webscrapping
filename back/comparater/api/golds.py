@@ -1,6 +1,8 @@
+
+
 from flask import request
 from flask_restful import Resource
-from comparater.managers.golds import search_golds,search_gold
+
 class Golds(Resource):
     def get(self):
         query = request.args['query']

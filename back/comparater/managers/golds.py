@@ -1,10 +1,5 @@
-import requests
-from comparater.models.gold import Gold
-def search_golds():
-    return "golds"
-def search_gold():
-    return "gold"
 
+from models.gold import Gold
 
 def search_golds(query):
     query = query.lower()

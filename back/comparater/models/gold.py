@@ -2,11 +2,11 @@ from peewee import *
 
 from .database import db
 
-
 class Gold(Model):
     id = PrimaryKeyField()
     name = CharField()
-    url = CharField()
+    category=CharField()
+    imageurl = CharField()
     prix=FloatField()
     class Meta:
         database = db
@@ -14,7 +14,6 @@ class Gold(Model):
 
     def get_small_data(self):
         return {'name': self.name, 'url': self.url, 'prix': self.prix}
-
 
 with db:
     Gold.create_table(fail_silently=True)

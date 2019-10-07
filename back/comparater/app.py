@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
 
-from comparater.api import register_api
+from .api import register_api
 
 
 def create_app():
