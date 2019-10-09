@@ -4,11 +4,11 @@ import csv
 from json import JSONEncoder
 
 
-def search_golds(query):
+def search_golds(query,type):
     query = query.lower()
     print(query)
     golds = Gold.select().where(Gold.name.contains(query))
-    print(golds)
+    golds = [gold.get_small_data() for gold in golds]
     return golds
 
 
@@ -20,7 +20,8 @@ def search_gold(name):
 def get_gold_by_name(name):
     print(name)
     gold = Gold.get_or_none(Gold.name == name)
-    print(gold.name)
+    if gold is not None:
+        print(gold.name)
     gold_dic = {}
     gold_dic['name'] = gold.name
     gold_dic['url'] = gold.url

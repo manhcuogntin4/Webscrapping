@@ -27,18 +27,18 @@
     import axios from 'axios';
 
     export default {
-        props: ['name'],
+        props: ['gold'],
         data: () => ({
             gold: null
         }),
         created() {
-            axios.get('http://localhost:8000/api/v1/gold/' + this.name).then((response) => {
+            axios.get('http://localhost:8000/api/v1/gold/' + this.gold.name).then((response) => {
                 this.gold = response.data;
             });
         },
         methods: {
             deleteGold() {
-                axios.delete('http://localhost:8000/api/v1/gold/' + this.name);
+                axios.delete('http://localhost:8000/api/v1/gold/' + this.gold.name);
             }
         }
     };

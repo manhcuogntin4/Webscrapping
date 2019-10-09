@@ -31,3 +31,7 @@ class Shop(Model):
 
 with db:
     Shop.create_table(fail_silently=True)
+
+class GoldShops(Model):
+    id=PrimaryKeyField()
+    gold=ForeignKeyField(Gold,)
