@@ -7,7 +7,14 @@
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
       <v-toolbar-title>Gold Comparater</v-toolbar-title>
-
+      <div>
+      <v-toolbar-items>
+          <v-btn text>LINK 1</v-btn>
+          <v-btn text>LINK 2</v-btn>
+          <v-btn text>LINK 3</v-btn>
+          <v-btn text>LINK 4</v-btn>
+      </v-toolbar-items>
+      </div>
       <div class="flex-grow-1"></div>
 
       <v-btn icon>
@@ -25,12 +32,11 @@
         </template>
 
         <v-list>
-          <v-list-item
-            v-for="n in 5"
-            :key="n"
-            @click="() => {}"
-          >
-            <v-list-item-title>Option {{ n }}</v-list-item-title>
+          <v-list-item href="/login" target="_blank">
+            <v-list-item-title>Login</v-list-item-title>
+          </v-list-item>
+          <v-list-item href="http://google.com" target="_blank">
+            <v-list-item-title>Logout</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
@@ -40,5 +46,6 @@
 <script>
 export default {
   name: 'Banner',
+
 }
 </script>

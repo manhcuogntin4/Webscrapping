@@ -15,6 +15,10 @@ class Gold(Model):
     def get_small_data(self):
         return {'name': self.name, 'url': self.url, 'prix': self.prix}
 
+    def update_stats(self, stats):
+        self.url = stats['url']
+        self.prix = stats['prix']
+
 
 with db:
     Gold.create_table(fail_silently=True)

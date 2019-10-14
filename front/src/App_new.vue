@@ -1,32 +1,20 @@
 <template>
-    <v-app>
-        <Banner></Banner>
-        <v-content>
-            <v-container>
-                <goldlist :search="search"></goldlist>
-            </v-container>
-        </v-content>
-    </v-app>
+    <div id="app">
+        <div id="nav">
+            <router-link v-if="authenticated" to="/home" v-on:click.native="logout()" replace></router-link>
+        </div>
+        <router-view @authenticated="setAuthenticated" />
+    </div>
 </template>
 
 <script>
-
-    import goldlist from './components/goldlist.vue';
-    import Banner from './components/Banner.vue';
-
-
     export default {
-        name: 'App',
-        components: {
-            goldlist,Banner
-        },
+        name: 'App_new',
         data() {
             return {
-                searchAvailable: false,
-                search: null,
                 authenticated: false,
                 mockAccount: {
-                    username: "nraboy",
+                    username: "password",
                     password: "password"
                 }
             }
@@ -44,5 +32,19 @@
                 this.authenticated = false;
             }
         }
-    };
+    }
 </script>
+
+<style>
+    body {
+        background-color: #F0F0F0;
+    }
+    h1 {
+        padding: 0;
+        margin-top: 0;
+    }
+    #app {
+        width: 1024px;
+        margin: auto;
+    }
+</style>

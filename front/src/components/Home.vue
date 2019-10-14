@@ -11,12 +11,12 @@
 
 <script>
 
-    import goldlist from './components/goldlist.vue';
-    import Banner from './components/Banner.vue';
+    import goldlist from './goldlist.vue';
+    import Banner from './Banner.vue';
 
 
     export default {
-        name: 'App',
+        name: 'home',
         components: {
             goldlist,Banner
         },
@@ -29,11 +29,6 @@
                     username: "nraboy",
                     password: "password"
                 }
-            }
-        },
-        mounted() {
-            if(!this.authenticated) {
-                this.$router.replace({ name: "login" });
             }
         },
         methods: {
