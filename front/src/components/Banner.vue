@@ -9,10 +9,10 @@
       <v-toolbar-title>Gold Comparater</v-toolbar-title>
       <div>
       <v-toolbar-items>
-          <v-btn text>LINK 1</v-btn>
-          <v-btn text>LINK 2</v-btn>
-          <v-btn text>LINK 3</v-btn>
-          <v-btn text>LINK 4</v-btn>
+          <v-btn text @click='go_Home()'>HOME</v-btn>
+          <v-btn text @click='go_Add()'>ADD</v-btn>
+          <v-btn text>EXPERT</v-btn>
+          <v-btn text @click='go_About()'>ABOUT</v-btn>
       </v-toolbar-items>
       </div>
       <div class="flex-grow-1"></div>
@@ -46,6 +46,17 @@
 <script>
 export default {
   name: 'Banner',
+methods: {
+            go_Home() {
+                this.$router.replace('/home');
 
+            },
+            go_About(){
+                 this.$router.replace('/about');
+            },
+             go_Add(){
+                 this.$router.replace('/add');
+            }
+        }
 }
 </script>

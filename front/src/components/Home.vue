@@ -22,13 +22,7 @@
         },
         data() {
             return {
-                searchAvailable: false,
-                search: null,
-                authenticated: false,
-                mockAccount: {
-                    username: "nraboy",
-                    password: "password"
-                }
+
             }
         },
         methods: {

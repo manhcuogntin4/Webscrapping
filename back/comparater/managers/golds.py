@@ -20,12 +20,12 @@ def search_gold(name):
 def get_gold_by_name(name):
     print(name)
     gold = Gold.get_or_none(Gold.name == name)
+    gold_dic = {}
     if gold is not None:
         print(gold.name)
-    gold_dic = {}
-    gold_dic['name'] = gold.name
-    gold_dic['url'] = gold.url
-    gold_dic['prix'] = gold.prix
+        gold_dic['name'] = gold.name
+        gold_dic['url'] = gold.url
+        gold_dic['prix'] = gold.prix
     return gold_dic
 
 def get_gold(name):
