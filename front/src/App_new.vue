@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <div id="nav">
-            <router-link v-if="authenticated" to="/home" v-on:click.native="logout()" replace></router-link>
+            <router-link v-if="authenticated==false" to="/login" v-on:click.native="logout()" replace></router-link>
         </div>
         <router-view @authenticated="setAuthenticated" />
     </div>
@@ -17,11 +17,6 @@
                     username: "password",
                     password: "password"
                 }
-            }
-        },
-        mounted() {
-            if(!this.authenticated) {
-                this.$router.replace({ name: "login" });
             }
         },
         methods: {

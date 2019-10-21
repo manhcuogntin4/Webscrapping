@@ -3,7 +3,7 @@
         <Banner></Banner>
         <v-content>
             <v-container>
-                <goldlist :search="search"></goldlist>
+                <goldlist :search="search" :key="search"></goldlist>
             </v-container>
         </v-content>
     </v-app>
@@ -26,23 +26,14 @@
                 search: null,
                 authenticated: false,
                 mockAccount: {
-                    username: "nraboy",
+                    username: "password",
                     password: "password"
                 }
             }
         },
-        mounted() {
-            if(!this.authenticated) {
-                this.$router.replace({ name: "login" });
-            }
+        watch() {
+            this.search=Authentique.search;
+            console.log(this.search);
         },
-        methods: {
-            setAuthenticated(status) {
-                this.authenticated = status;
-            },
-            logout() {
-                this.authenticated = false;
-            }
-        }
     };
 </script>

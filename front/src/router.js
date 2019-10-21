@@ -4,7 +4,6 @@ import LoginComponent from "./components/Login.vue"
 import HomeComponent from "./components/Home.vue"
 import AboutComponent from "./components/About.vue"
 import AddComponent from "./components/Add.vue"
-import App from "./App.vue"
 
 Vue.use(Router)
 
@@ -33,7 +32,7 @@ export default new Router({
         {
             path: '/',
             redirect: {
-                name: "login"
+                name: "home"
             }
         },
     ]

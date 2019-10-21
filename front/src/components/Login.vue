@@ -8,11 +8,14 @@
 </template>
 
 <script>
+    import vue from 'vue';
+    import {Authentique} from '../main.js';
     export default {
         name: 'Login',
         data() {
             return {
-                is_login:"false",
+                is_login:false,
+                data:false,
                 input: {
                     username: "",
                     password: ""
@@ -23,10 +26,10 @@
             login() {
                 if(this.input.username != "" && this.input.password != "") {
                     if(this.input.username == this.$parent.mockAccount.username && this.input.password == this.$parent.mockAccount.password) {
-                        this.$emit("authenticated", true);
-                        this.$router.replace('/home');
-                        console.log("Login success");
+                        Authentique.is_authentique=true;
                         this.is_login=true;
+                        this.$router.replace('/home');
+                        console.log(Authentique.is_authentique)
                     } else {
                         console.log("The username and / or password is incorrect");
                     }

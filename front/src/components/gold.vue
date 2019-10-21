@@ -11,7 +11,7 @@
                             <v-list-item-subtitle>{{ gold.prix }}</v-list-item-subtitle>
                         </v-list-item-content>
                     </v-list-item>
-                    <v-card-actions>
+                    <v-card-actions v-if="authen" :key="authen">
                         <v-spacer></v-spacer>
                          <v-btn text icon color="blue" @click="startEditGold">
                          <v-icon>mdi-pencil</v-icon>
@@ -54,17 +54,22 @@
 
 <script>
     import axios from 'axios';
-
+    import {Authentique} from '../main.js';
     export default {
         props: ['gold'],
         data: () => ({
             edit: false,
             gold_edited: null,
+            authen:false,
         }),
         created() {
+            this.authen=Authentique.is_authentique;
+            console.log(this.authen);
             axios.get('http://localhost:8000/api/v1/gold/' + this.gold.name).then((response) => {
                 this.gold = response.data;
             });
+
+            console.log(this.authen==true);
         },
         methods: {
             deleteGold() {
@@ -84,6 +89,9 @@
                     this.gold_edited.name=this.gold.name,
                     this.gold_edited.prix=this.gold.prix
                 });
+            },
+            login_confirm(){
+            this.authen=true;
             },
             editGold() {
                 axios.patch('http://localhost:8000/api/v1/gold/' + this.gold.name, this.gold_edited).then(() => {
