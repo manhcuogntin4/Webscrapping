@@ -8,7 +8,7 @@ def search_golds(query):
     query = query.lower()
     print(query)
     golds = Gold.select().where(Gold.name.contains(query))
-    print(golds)
+    golds = [gold.get_small_data() for gold in golds]
     return golds
 
 
@@ -20,13 +20,17 @@ def search_gold(name):
 def get_gold_by_name(name):
     print(name)
     gold = Gold.get_or_none(Gold.name == name)
-    print(gold.name)
     gold_dic = {}
-    gold_dic['name'] = gold.name
-    gold_dic['url'] = gold.url
-    gold_dic['prix'] = gold.prix
+    if gold is not None:
+        print(gold.name)
+        gold_dic['name'] = gold.name
+        gold_dic['url'] = gold.url
+        gold_dic['prix'] = gold.prix
     return gold_dic
 
+def get_gold(name):
+    gold = Gold.get_or_none(Gold.name == name)
+    return gold
 
 def create_gold(name, url, prix):
     gold = Gold.get_or_none(name=name)
@@ -59,3 +63,8 @@ def load_gold_from_csv():
             create_gold(row['name'],row['url'],row['prix'])
 
 
+def update_gold(name,stats):
+    gold = get_gold(name)
+    gold.update_stats(stats)
+    n=gold.save()
+    return gold

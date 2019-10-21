@@ -1,28 +1,39 @@
 <template>
     <v-app>
-        <v-app-bar app>
-            <v-toolbar-title class="headline text-uppercase">
-                <span>Gold Comparater</span>
-            </v-toolbar-title>
-        </v-app-bar>
-
+        <Banner></Banner>
         <v-content>
-            <gold name="100"/>
-            <gold name="200"/>
+            <v-container>
+                <goldlist :search="search" :key="search"></goldlist>
+            </v-container>
         </v-content>
     </v-app>
 </template>
 
 <script>
 
-    import gold from './components/gold';
+    import goldlist from './components/goldlist.vue';
+    import Banner from './components/Banner.vue';
+
 
     export default {
         name: 'App',
         components: {
-            gold,
+            goldlist,Banner
         },
-        data: () => ({//
-        }),
+        data() {
+            return {
+                searchAvailable: false,
+                search: null,
+                authenticated: false,
+                mockAccount: {
+                    username: "password",
+                    password: "password"
+                }
+            }
+        },
+        watch() {
+            this.search=Authentique.search;
+            console.log(this.search);
+        },
     };
 </script>
